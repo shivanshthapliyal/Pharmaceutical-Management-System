@@ -1,10 +1,8 @@
 # Pharmaceutical-Management-System
-The purpose of the system is to ease the process of ordering/purchasing medicines online as well as directly. The system manages the customers and their orders as well as all the details of medicines (Manufacturer info, Expiry Date,etc.). The system is being developed in python and is based on relational database MySQL. The system will be made available across all the branches of the store along with the users.
+The purpose of the system is to ease the process of ordering/purchasing medicines online as well as directly. The system manages the customers and their orders as well as all the details of medicines (Manufacturer info, Expiry Date, etc.). The system is being developed in python and is based on relational database MySQL. The system will be made available across all the branches of the store along with the users.
 
 
-1.Introduction:
-
-1.1) PURPOSE:
+##1.1) PURPOSE:
 The purpose of this document is to build a system for managing the pharmaceutical stores and also an interface for the customers so that they can order the medicines online from their homes with ease.
 
 
@@ -78,7 +76,7 @@ The admin will be able to see all the users who have ordered/ placed an order/ o
 The admin will be able to see the order queue at present and all the details pertaining to the same.
 
  Check expiry date of medicines
-A query will be generated for the admin to see the expiry date of all thevmedicines. 
+A query will be generated for the admin to see the expiry date of all thevmedicines.
 This is an important step in any pharmacy as expired medicines are not sold.
 
  Manufacturer’s Info i.e. orders for new stock
