@@ -17,7 +17,7 @@ class Admin:
         pass
     def UpdateInventoy(self,med):
         pass
-    def __init__(self,aid):
+    def __init__(self,aid='root'):
         super.__init__(self,aid)
         pass
     @staticmethod
