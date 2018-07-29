@@ -18,7 +18,7 @@ class Admin:
     def UpdateInventoy(self,med):
         pass
     def __init__(self,aid):
-        super(self,aid)
+        super.__init__(self,aid)
         pass
     @staticmethod
     def login(mail,passw):
