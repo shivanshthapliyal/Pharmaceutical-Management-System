@@ -2,13 +2,13 @@
 The purpose of the system is to ease the process of ordering/purchasing medicines online as well as directly. The system manages the customers and their orders as well as all the details of medicines (Manufacturer info, Expiry Date,etc.). The system is being developed in python and is based on relational database MySQL. The system will be made available across all the branches of the store along with the users.
 
 
-1.Introduction:
+##1.Introduction:
 
-1.1) PURPOSE:
+-1.1) PURPOSE:
 The purpose of this document is to build a system for managing the pharmaceutical stores and also an interface for the customers so that they can order the medicines online from their homes with ease.
 
 
-1.2) DOCUMENT CONVENTIONS:
+-1.2) DOCUMENT CONVENTIONS:
 The conventions being used by this document are given below:
 
 
@@ -16,12 +16,12 @@ The conventions being used by this document are given below:
 MySQL workbench is used to connect with the database.
 
 
-1.3) INTENDED AUDIENCE AND READING SUGGESTIONS:
+-1.3) INTENDED AUDIENCE AND READING SUGGESTIONS:
 The system is being made for both the customers and the admins. The software will be made available to the customers for ordering medicines, managing their profiles and prescriptions, etc.
 The admins will be able to keep track of the sales and the stock of the medicines.
 
 
-1.4) PROJECT SCOPE:
+-1.4) PROJECT SCOPE:
 The purpose of the system is to ease the process of ordering/purchasing medicines online as well as directly.
 The system manages the customers and their orders as well as all the details of medicines (Manufacturer info, Expiry Date,etc.). The system is being
 developed in python and is based on relational database MySQL.
