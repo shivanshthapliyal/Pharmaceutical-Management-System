@@ -4,13 +4,26 @@
 #         super(, self).__init__()
 #         self.arg = arg
 
-class Admin:
+import pymysql
+import user
+import customer
+con = pymysql.connect("localhost","testuser","test123","TESTDB" )
+
+class admin(user):
     admin_pass='root'
     def custDetail(self,cust):
+        pass
 
-        pass
     def  pending_orders(self):
-        pass
+        cur=con.cursor()
+        stmt=""""Select oid,cid,dateoforder from orders where status='pending' group by oid"""
+        cur.execute(stmt)
+        res=cur.fetchall()
+        print("Details of pending orders:-")
+        print("Order id/tCustomer id/tDate Of Order")
+        for i in res:
+            print(i[0]+"/t"+i[1]+"/t"+i[2])
+
     def updateOrderStatus(self,order):
         pass
     def stockOrder(self,manf,med,qty):
@@ -19,7 +32,4 @@ class Admin:
         pass
     def __init__(self,aid='root'):
         super.__init__(self,aid)
-        pass
-    @staticmethod
-    def login(mail,passw):
         pass
