@@ -1,22 +1,26 @@
-<<<<<<< HEAD
-
-
-# run dbqueries.py file first which will contain the databse creation queries.
-x
-=======
-# class ClassName(object):
-#     """docstring for ."""
-#     def __init__(self, arg):
-#         super(, self).__init__()
-#         self.arg = arg
-
 import pymysql
 import user
-import customer
-con = pymysql.connect("localhost","testuser","test123","TESTDB" )
+# import customer
+con = pymysql.connect(user='root', password='', database='pms_try')
 
 class admin(user):
     admin_pass='root'
+
+#     Check inventory for all medicines and their availability.
+#     A query will be generated for the admin to see all the medicines,
+#     their expiry date, the manufacturers info and all the other info.
+
+    def checkInventory(self):
+        cur=con.cursor()
+        stmt=""""Select mid,mname,price,qty,manin, exp_date from medicine"""
+        cur.execute(stmt)
+        res=cur.fetchall()
+        print("Inventory Details :-\n")
+        print("MedicineID\tName\tPrice\tQuantity\tManufacturerID\tExpiry date")
+        for i in res:
+            print(i[0]+"/t"+i[1]+"/t"+i[2]+"/t"+i[3]+"/t"+i[4]+"/t"+i[5])
+
+
     def custDetail(self,cust):
         pass
 
@@ -39,4 +43,6 @@ class admin(user):
     def __init__(self,aid='root'):
         super.__init__(self,aid)
         pass
->>>>>>> 1b3514e1f5e9605c2b6e0f38d5ff7183c74385ff
+
+obj = admin()
+obj.checkInventory()
