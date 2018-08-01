@@ -1,25 +1,26 @@
 import pymysql
-import user
+# import user
 # import customer
+from prettytable import PrettyTable
 con = pymysql.connect(user='root', password='', database='pms_try')
 
-class admin(user):
+class admin():
     admin_pass='root'
 
 #     Check inventory for all medicines and their availability.
 #     A query will be generated for the admin to see all the medicines,
 #     their expiry date, the manufacturers info and all the other info.
 
-    def checkInventory(self):
+    def checkInventory():
         cur=con.cursor()
-        stmt=""""Select mid,mname,price,qty,manin, exp_date from medicine"""
+        stmt="""SELECT * FROM pms_try.medicine"""
         cur.execute(stmt)
         res=cur.fetchall()
         print("Inventory Details :-\n")
-        print("MedicineID\tName\tPrice\tQuantity\tManufacturerID\tExpiry date")
+        x = PrettyTable(["MedicineID","Name","Price","Quantity","ManufacturerID","Expiry date"])
         for i in res:
-            print(i[0]+"/t"+i[1]+"/t"+i[2]+"/t"+i[3]+"/t"+i[4]+"/t"+i[5])
-
+            x.add_row(i)
+        print(x)
 
     def custDetail(self,cust):
         pass
@@ -40,9 +41,11 @@ class admin(user):
         pass
     def UpdateInventoy(self,med):
         pass
-    def __init__(self,aid='root'):
-        super.__init__(self,aid)
+#     def __init__(self,aid='root'):
+#         super.__init__(self,aid)
+#         pass
+    def __init__(self):
+
         pass
 
-obj = admin()
-obj.checkInventory()
+admin.checkInventory()
