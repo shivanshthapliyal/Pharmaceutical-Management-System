@@ -18,6 +18,9 @@ class admin():
         res=cur.fetchall()
         print("Inventory Details :-\n")
         x = PrettyTable(["MedicineID","Name","Price","Quantity","ManufacturerID","Expiry date"])
+        x.align["Name"]="l"
+        x.align["MedicineID"]="r"
+        x.align["Price"]="r"
         for i in res:
             x.add_row(i)
         print(x)
