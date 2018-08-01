@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-
-
-# run dbqueries.py file first which will contain the databse creation queries.
-x
-=======
-# class ClassName(object):
-#     """docstring for ."""
-#     def __init__(self, arg):
-#         super(, self).__init__()
-#         self.arg = arg
-
 import pymysql
 import user
 import customer
@@ -39,4 +27,4 @@ class admin(user):
     def __init__(self,aid='root'):
         super.__init__(self,aid)
         pass
->>>>>>> 1b3514e1f5e9605c2b6e0f38d5ff7183c74385ff
+
