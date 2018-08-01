@@ -5,30 +5,23 @@ now = datetime.datetime.now()
 con = pymysql.connect("localhost","root","root","pharmacy" )
 curs=con.cursor()
 class Medicine:
-
     def __init__(self,mid):
-        med_id=mid
-        stmt="""Select qty from medicine where mid=:1"""
-        curs.execute(stmt,(med_id))
+        self.med_id=mid
+        curs.execute("""Select qty from medicine where mid=%s""",(self.med_id))
         result=curs.fetchall()
-        for i in result:
-            for j in i:
-                qty_avail=j
-        stmt="""Select exp_date from medicine where mid=:1"""
-        curs.execute(stmt,(med_id))
+        self.qty_avail=result[0][0]
+        stmt="""Select exp_date from medicine where mid=%s"""
+        curs.execute(stmt,(self.med_id))
         result=curs.fetchall()
-        for i in result:
-            for j in i:
-                med_expdate=datetime.datetime.strftime(j,"%Y-%M-%D")
-        stmt="""Select price from medicine where mid=:1"""
-        curs.execute(stmt,(med_id))
+        self.med_expdate=datetime.datetime.strftime(result[0][0],"%Y-%M-%D")
+        stmt="""Select price from medicine where mid=%s"""
+        curs.execute(stmt,(self.med_id))
         result=curs.fetchall()
-        for i in result:
-            for j in i:
-                price=j
+        self.price=result[0][0]
 
 
     def checkExpiry(self):
+
         if(self.med_expdate>now.strftime("%Y-%M-%D")):
             return True
         else:
@@ -41,11 +34,11 @@ class Medicine:
             False
 
     def updateQty(self,qty):
-        stmt="""Update medicine set qty=:1 where mid=:2"""
+        stmt="""Update medicine set qty=%s where mid=%s"""
         curs.execute(stmt,(self.qty_avail+qty,self.med_id))
         con.commit()
 
     def updateExp(self,dt):
-        stmt="""Update medicine set exp_date=:1 where mid=:2"""
+        stmt="""Update medicine set exp_date=%s where mid=%s"""
         curs.execute(stmt,(dt,self.med_id))
         con.commit()
