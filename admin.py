@@ -1,22 +1,30 @@
-<<<<<<< HEAD
-
-
-# run dbqueries.py file first which will contain the databse creation queries.
-x
-=======
-# class ClassName(object):
-#     """docstring for ."""
-#     def __init__(self, arg):
-#         super(, self).__init__()
-#         self.arg = arg
-
 import pymysql
-import user
-import customer
-con = pymysql.connect("localhost","testuser","test123","TESTDB" )
+# import user
+# import customer
+from prettytable import PrettyTable
+con = pymysql.connect(user='root', password='', database='pms_try')
 
-class admin(user):
+class admin():
     admin_pass='root'
+
+#     Check inventory for all medicines and their availability.
+#     A query will be generated for the admin to see all the medicines,
+#     their expiry date, the manufacturers info and all the other info.
+
+    def checkInventory():
+        cur=con.cursor()
+        stmt="""SELECT * FROM pms_try.medicine"""
+        cur.execute(stmt)
+        res=cur.fetchall()
+        print("Inventory Details :-\n")
+        x = PrettyTable(["MedicineID","Name","Price","Quantity","ManufacturerID","Expiry date"])
+        x.align["Name"]="l"
+        x.align["MedicineID"]="r"
+        x.align["Price"]="r"
+        for i in res:
+            x.add_row(i)
+        print(x)
+
     def custDetail(self,cust):
         pass
 
@@ -36,7 +44,11 @@ class admin(user):
         pass
     def UpdateInventoy(self,med):
         pass
-    def __init__(self,aid='root'):
-        super.__init__(self,aid)
+#     def __init__(self,aid='root'):
+#         super.__init__(self,aid)
+#         pass
+    def __init__(self):
+
         pass
->>>>>>> 1b3514e1f5e9605c2b6e0f38d5ff7183c74385ff
+
+admin.checkInventory()
