@@ -93,7 +93,7 @@ CREATE TABLE `medicine` (
 
 LOCK TABLES `medicine` WRITE;
 /*!40000 ALTER TABLE `medicine` DISABLE KEYS */;
-INSERT INTO `medicine` VALUES (256,'Calpol',25,100,5463,'2019-02-23'),(1450,'Hetrazein',36,200,3569,'2019-01-12'),(2213,'Acetaminophen.',1200,150,245,'2019-04-14'),(2598,'Adderall.',2050,100,1103,'2018-08-15'),(3219,'Apex',25,250,1103,'2018-12-12'),(6544,'Aciloc',10,500,4587,'2019-05-15'),(7451,'Atorvastatin.',50,600,6945,'2019-05-15'),(9870,'Morphine',50,236,6945,'2019-03-11');
+INSERT INTO `medicine` VALUES (256,'Calpol',25,100,5463,'2019-02-23'),(1450,'Hetrazein',36,200,3569,'2019-01-12'),(2213,'Acetaminophen.',1200,145,245,'2019-04-14'),(2598,'Adderall.',2050,100,1103,'2018-08-15'),(3219,'Apex',25,250,1103,'2018-12-12'),(6544,'Aciloc',10,500,4587,'2019-05-15'),(7451,'Atorvastatin.',50,600,6945,'2019-05-15'),(9870,'Morphine',50,236,6945,'2019-03-11');
 /*!40000 ALTER TABLE `medicine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,6 +110,7 @@ CREATE TABLE `orders` (
   `mid` int(11) NOT NULL,
   `status` varchar(20) DEFAULT 'pending',
   `dateoforder` datetime DEFAULT NULL,
+  `qty` int(11) NOT NULL,
   PRIMARY KEY (`oid`,`mid`),
   KEY `cid` (`cid`),
   KEY `mid` (`mid`),
@@ -124,6 +125,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (18,1023,1450,'pending','2018-08-01 22:39:54',0),(18,1023,3219,'pending','2018-08-01 22:40:03',0),(19,1025,256,'pending','2018-08-01 22:41:30',0),(19,1025,2213,'pending','2018-08-01 22:41:20',0),(19,1025,2598,'pending','2018-08-01 22:41:13',0),(20,1024,6544,'pending','2018-08-01 22:43:22',0),(20,1024,9870,'pending','2018-08-01 22:43:33',0),(27,1026,2213,'pending','2018-08-01 22:57:29',0);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -136,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-01 21:16:18
+-- Dump completed on 2018-08-02 15:17:07
