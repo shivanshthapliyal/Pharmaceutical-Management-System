@@ -2,7 +2,9 @@ import pymysql
 import datetime
 now = datetime.datetime.now()
 
-con = pymysql.connect("localhost","root","root","pharmacy" )
+from database import *
+con=database.connection()
+
 curs=con.cursor()
 class Medicine:
     def __init__(self,mid):

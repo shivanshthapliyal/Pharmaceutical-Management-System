@@ -55,7 +55,7 @@ class customer(user): #completed
         curs.execute(""" SELECT COUNT(*) from (SELECT cid,oid, count(*) AS count FROM pharmacy.orders GROUP BY oid, cid) as t WHERE cid=%s""",
             cid)
         d = curs.fetchall()
-        if (d[0][0] >= 5):
+        if (d[0][0] >= 5 and d[0][0] <10):
             return 5
         elif (d[0][0] >= 10):
             return 10
