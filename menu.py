@@ -1,5 +1,5 @@
 import pymysql
-from prettytable import PrettyTable
+import prettytable
 import datetime
 from database import *
 from user import *

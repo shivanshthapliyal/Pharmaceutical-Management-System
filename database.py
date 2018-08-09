@@ -11,7 +11,7 @@ class database:
     curs=None
     @staticmethod
     def connection():
-        database.conn = pymysql.connect(user='root', password='', database='pharmacy')
+        database.conn = pymysql.connect(user='root', password='root', database='pharmacy')
         return database.conn
     @staticmethod
     def cursor():

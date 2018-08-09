@@ -170,6 +170,7 @@ class admin():
         print("Here by manufacturer we mean to say distributor ! \n")
 
         k=PrettyTable(["Med_id","Med_name","exp_date","qty_avail"])
+        print(k)
         x = PrettyTable(["ManufacturerID","ManufacturerName"]) #just to test
         x.set_style(MSWORD_FRIENDLY)
         x.align["ManufacturerID"]="r"
@@ -183,7 +184,7 @@ class admin():
             for j in random.sample(range(0, len(result1)-1), random.randint(1,len(result1)%len(result)+1)):
                 k.add_row(result2[j])
                 stock.append([i[0],i[1],result2[j]])
-                print(k)
+            print(k)
             k.clear_rows()
             x.clear_rows()
             print("\n\n")
@@ -213,5 +214,4 @@ class admin():
         ob = admin()
         ob.updateInventory(item)
 
-ob = admin()
-ob.checkexpirydates()
+
