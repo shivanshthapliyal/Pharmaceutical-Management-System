@@ -44,10 +44,10 @@ class customer(user): #completed
         name = input("Enter your Name:")
         password = input("Enter password:")
         phone = input("Enter phone number:")
-        email = input("Enter email address:")
+        
         address = input("Enter address:")
-        curs.execute(""" UPDATE pharmacy.customer set cname=%s, password=%s, phone=%s, email=%s, address=%s WHERE cid=%s""",
-        (name, password, phone, email, address, cid))
+        curs.execute(""" UPDATE pharmacy.customer set cname=%s, password=%s, phone=%s, address=%s WHERE cid=%s""",
+        (name, password, phone, address, cid))
         print(curs.rowcount,"record updated successfully!")
         conn.commit()
 
