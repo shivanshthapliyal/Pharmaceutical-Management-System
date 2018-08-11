@@ -32,11 +32,11 @@ class admin():
 
     def printUserDetails():
         cur=con.cursor()
-        stmt="""SELECT * FROM pms_try.customer"""
+        stmt="""SELECT cid,cname,phone,email,address FROM pms_try.customer"""
         cur.execute(stmt)
         res=cur.fetchall()
         print("Inventory Details :-\n")
-        x = PrettyTable(["Customer ID","Customer Name","Phone","EMail","Address","Password"])
+        x = PrettyTable(["Customer ID","Customer Name","Phone","EMail","Address"])
         x.align["Customer Name"]="l"
         for i in res:
             x.add_row(i)

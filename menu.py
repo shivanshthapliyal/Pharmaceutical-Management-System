@@ -47,7 +47,8 @@ if choice1 == 1:
                     print("2.Press 2 to update profile details.")
                     print("3.Press 3 to order new items.")
                     print("4.Press 4 to see previous orders.")
-                    print("5.Press 5 to log Out.")
+                    print("5.")
+                    print("5.Press 6 to log Out.")
                     choice3 = int(input("Enter choice:"))
                     if choice3 == 1:
                         print("Customer Name:", r[0][1])
@@ -63,6 +64,7 @@ if choice1 == 1:
                     elif choice3 == 4:
                         obj.previousOrder(cid)
                     elif choice3 == 5:
+                    elif choice3 == 6:
                         tg = True
             else:
                 print("Login Unsuccessful!")
