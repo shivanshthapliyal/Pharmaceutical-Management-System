@@ -14,15 +14,36 @@ curs=database.cursor()
 #Program Menu
 mainlogger=True
 while mainlogger ==True:
+    r3=False
     print("===== Welcome to GSBT Pharmaceuticals =====")
     print("1.Customer")
     print("2.Admin")
     print("3.Exit.")
-    choice1 = int(input("Enter Choice:"))
+    while(r3==False):
+        choice1 = int(input("Enter Choice:"))
+        if(choice1 != 1):
+            if(choice1 != 2):
+                if(choice1 != 3):
+                    print("Enter proper choice!!!")
+                else:
+                    r3=True
+            else:
+                r3=True
+        else:
+            r3=True
     if choice1 == 1:
+        r4=False
         print("1.Signup")
         print("2.Signin")
-        choice2 = int(input("Enter choice:"))
+        while(r4==False):
+            choice2 = int(input("Enter Choice:"))
+            if(choice2 != 1):
+                if(choice2 != 2):
+                    print("Enter proper choice!!!")
+                else:
+                    r4=True
+            else:
+                r4=True
         if choice2 == 1:
             r1=False
             r2=False
