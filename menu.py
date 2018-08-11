@@ -20,30 +20,23 @@ while mainlogger ==True:
     print("2.Admin")
     print("3.Exit.")
     while(r3==False):
-        choice1 = int(input("Enter Choice:"))
-        if(choice1 != 1):
-            if(choice1 != 2):
-                if(choice1 != 3):
-                    print("Enter proper choice!!!")
-                else:
-                    r3=True
-            else:
-                r3=True
+        c1 = input("Enter Choice:")
+        if not re.match(r"[0-6]",c1):
+            print("Enter proper Choice!!!")
         else:
             r3=True
+    choice1=int(c1)
     if choice1 == 1:
         r4=False
         print("1.Signup")
         print("2.Signin")
         while(r4==False):
-            choice2 = int(input("Enter Choice:"))
-            if(choice2 != 1):
-                if(choice2 != 2):
-                    print("Enter proper choice!!!")
-                else:
-                    r4=True
+            c2 = input("Enter Choice:")
+            if not re.match(r"[0-6]",c2):
+                print("Enter proper Choice!!!")
             else:
                 r4=True
+        choice2=int(c2)
         if choice2 == 1:
             r1=False
             r2=False
@@ -86,27 +79,39 @@ while mainlogger ==True:
                     conid = rows[0][0]
                     tg = False
                     while tg != True:
+                        r5=False
+                        print("==== Main Menu ====")
                         print("1.View profile details.")
                         print("2.Update profile details.")
                         print("3.Order new items.")
                         print("4.Previous orders.")
                         print("5.Show Offers.")
                         print("6.Log Out.")
-                        choice3 = int(input("Enter choice:"))
+                        while(r5==False):
+                            c3 = input("Enter choice:")
+                            if not re.match(r"[0-6]",c3):
+                                print("Enter proper Choice!!!")
+                            else:
+                                r5=True
+                        choice3=int(c3)
                         if choice3 == 1:
+                            print("==== Cutomer Details ====")
                             print("Customer Name:", r[0][1])
                             print("Customer ID:", r[0][0])
                             print("Customer address:", r[0][2])
                             print("Customer Email:", r[0][4])
                             print("Customer phone:", r[0][3])
                         elif choice3 == 2:
+                            print("==== Update Profile ====")
                             obj.updateProfile(cid)
                             print("\n")
                         elif choice3 == 3:
+                            print("==== Place New Order ====")
                             obj.placeOrder(cid,conid)
                             print("\n")
                             conid=conid+1
                         elif choice3 == 4:
+                            print("==== Previous Orders ====")
                             obj.previousOrder(cid)
                             print("\n")
                         elif choice3 == 5:
