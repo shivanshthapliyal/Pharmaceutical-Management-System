@@ -53,4 +53,3 @@ class order:
 
     def setStatus(self):
         pass
-

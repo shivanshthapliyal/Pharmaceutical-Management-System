@@ -1,71 +1,137 @@
 import pymysql
-from prettytable import PrettyTable
+import prettytable
 import datetime
 from database import *
 from user import *
 from customer import *
 from order import *
+from admin import *
+import re
 conn=database.connection()
 curs=database.cursor()
 
+
 #Program Menu
-print("1.Press 1 for Customer")
-print("2.Press 2 for Admin")
-choice1 = int(input("Enter Choice:"))
-if choice1 == 1:
-    print("1.Press 1 for Signup")
-    print("2.Press 2 for signin")
-    choice2 = int(input("Enter choice:"))
-    if choice2 == 1:
+mainlogger=True
+while mainlogger ==True:
+    print("===== Welcome to GSBT Pharmaceuticals =====")
+    print("1.Customer")
+    print("2.Admin")
+    print("3.Exit.")
+    choice1 = int(input("Enter Choice:"))
+    if choice1 == 1:
+        print("1.Signup")
+        print("2.Signin")
+        choice2 = int(input("Enter choice:"))
+        if choice2 == 1:
+            r1=False
+            r2=False
+            name = input("Enter your Name:")
+            password = input("Enter password:")
+            while(r1==False):
+                phone = input("Enter phone number:")
+                if(phone.isnumeric()==True):
+                    if(len(phone)==10):
+                        r1=True
+                    else:
+                        print("Enter 10 digit number correctly!!!")  
+                else:
+                    print("Enter 10 digit number correctly!!!")
+            while(r2==False):
+                email = input("Enter email address:")
+                if not re.match(r"[^@]+@[^@]+\.[^@]+",email):
+                    print("Enter Valid Email!!!")
+                else:
+                    r2=True
+            address = input("Enter address:")
+            obj = customer()
+            obj.fetchDetails(name, password, phone, email, address)
+        elif choice2 == 2:
+            tf = False
+            while tf != True:
+                uname = input("Enter Username(Email):")
+                password = input("Enter Password:")
+                obj = customer()
+                tf = obj.signin(uname, password)
+                if tf == True:
+                    print("Login Successful!")
+                    curs.execute(""" SELECT cid,cname, address, phone, email from pharmacy.customer WHERE email=%s""",
+                                 (uname,))
+                    r = curs.fetchall()
+                    cid = r[0][0]
+                    print("\nWELCOME " + r[0][1] + "!")
+                    curs.execute("SELECT CONNECTION_ID()")
+                    rows = curs.fetchall()
+                    conid = rows[0][0]
+                    tg = False
+                    while tg != True:
+                        print("1.View profile details.")
+                        print("2.Update profile details.")
+                        print("3.Order new items.")
+                        print("4.Previous orders.")
+                        print("5.Show Offers.")
+                        print("6.Log Out.")
+                        choice3 = int(input("Enter choice:"))
+                        if choice3 == 1:
+                            print("Customer Name:", r[0][1])
+                            print("Customer ID:", r[0][0])
+                            print("Customer address:", r[0][2])
+                            print("Customer Email:", r[0][4])
+                            print("Customer phone:", r[0][3])
+                        elif choice3 == 2:
+                            obj.updateProfile(cid)
+                            print("\n")
+                        elif choice3 == 3:
+                            obj.placeOrder(cid,conid)
+                            print("\n")
+                            conid=conid+1
+                        elif choice3 == 4:
+                            obj.previousOrder(cid)
+                            print("\n")
+                        elif choice3 == 5:
+                            print("=== CURRENT OFFERS ===")
+                            print("1.5% discount for customers who has done more than 5 orders in the store.")
+                            print("1.10% discount for customers who has done more than 10 orders in the store.")
+                            print("\n")
+                        elif choice3 == 6:
+                            tg = True
+                else:
+                    print("Login Unsuccessful!")
+
+    if choice1 == 2:
         name = input("Enter your Name:")
         password = input("Enter password:")
-        phone = input("Enter phone number:")
-        email = input("Enter email address:")
-        address = input("Enter address:")
-        obj = customer()
-        obj.fetchDetails(name, password, phone, email, address)
-    elif choice2 == 2:
-        tf = False
-        while tf != True:
-            uname = input("Enter Username(Email):")
-            password = input("Enter Password:")
-            obj = customer()
-            tf = obj.signin(uname, password)
-            if tf == True:
-                print("Login Successful!")
-                curs.execute(""" SELECT cid,cname, address, phone, email from pharmacy.customer WHERE email=%s""",
-                             (uname,))
-                r = curs.fetchall()
-                cid = r[0][0]
-                print("WELCOME " + r[0][1] + "!")
-                curs.execute("SELECT CONNECTION_ID()")
-                rows = curs.fetchall()
-                conid = rows[0][0]
-                tg = False
-                while tg != True:
-                    print("1.Press 1 to view profile details.")
-                    print("2.Press 2 to update profile details.")
-                    print("3.Press 3 to order new items.")
-                    print("4.Press 4 to see previous orders.")
-                    print("5.")
-                    print("5.Press 6 to log Out.")
-                    choice3 = int(input("Enter choice:"))
-                    if choice3 == 1:
-                        print("Customer Name:", r[0][1])
-                        print("Customer ID:", r[0][0])
-                        print("Customer address:", r[0][2])
-                        print("Customer Email:", r[0][4])
-                        print("Customer phone:", r[0][3])
-                    elif choice3 == 2:
-                        obj.updateProfile(cid)
-                    elif choice3 == 3:
-                        obj.placeOrder(cid,conid)
-                        conid=conid+1
-                    elif choice3 == 4:
-                        obj.previousOrder(cid)
-                    elif choice3 == 5:
-                    elif choice3 == 6:
-                        tg = True
-            else:
-                print("Login Unsuccessful!")
+        if(name=="admin" and password=="pass"):
+            tg=False
+            while tg != True:
+                print("1.Display inventory for all medicines and their availability.")
+                print("2.Check all user details.")
+                print("3.Check the order queue right now.")
+                print("4.Check expiry dates of medicines.")
+                print("5.Check medicines sold between a certain timeframe.")
+                print("6.Order stock.")
+                print("7.Logout.")
+                choice2 = int(input("Enter choice:"))
+                obj = admin()
+                if choice2 == 1:
+                    obj.checkInventory()
+                elif choice2 == 2:
+                    obj.printUserDetails()
+                elif choice2 == 3:
+                    obj.printorderqueue()
+                elif choice2 == 4:
+                    obj.checkexpirydates()
+                elif choice2 == 5:
+                    obj.checkmedicinessold()
+                elif choice2 == 6:
+                    obj.stockOrder()
+                elif choice2 == 7:
+                    tg=True
+                else:
+                    print("Wrong Input Choice. Try entering from the given choices.")
+        else:
+            print("Wrong Password/Username Combination")
+    if choice1 == 3:
+        mainlogger=False
+
 database.close()

@@ -25,4 +25,3 @@ class user:   #completed
         except Exception as e:
             print("Wrong Details!")
             return False
-
