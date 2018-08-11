@@ -9,8 +9,8 @@ curs=database.cursor()
 
 class order:
     def __init__(self):
-        self.status="pending"
-        self.curdate=None
+        self.status = "pending"
+        self.curdate = None
 
 
     def dispOrderDetails(self,conid):
@@ -50,6 +50,3 @@ class order:
 
     def setOrderDate(self):
         self.curdate=datetime.datetime.now()
-
-    def setStatus(self):
-        pass
