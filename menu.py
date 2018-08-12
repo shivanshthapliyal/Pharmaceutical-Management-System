@@ -21,7 +21,7 @@ while mainlogger ==True:
     print("3.Exit.")
     while(r3==False):
         c1 = input("Enter Choice:")
-        if not re.match(r"[0-6]",c1):
+        if not re.match(r"[1-3]",c1):
             print("Enter proper Choice!!!")
         else:
             r3=True
@@ -32,7 +32,7 @@ while mainlogger ==True:
         print("2.Signin")
         while(r4==False):
             c2 = input("Enter Choice:")
-            if not re.match(r"[0-6]",c2):
+            if not re.match(r"[1-2]",c2):
                 print("Enter proper Choice!!!")
             else:
                 r4=True
