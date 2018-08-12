@@ -92,20 +92,6 @@ class admin():
         print(x)
 
 
-#     def  pending_orders(self):
-#         cur=con.cursor()
-#         stmt=""""Select oid,cid,dateoforder from orders where status='pending' group by oid"""
-#         cur.execute(stmt)
-#         res=cur.fetchall()
-#         print("Details of pending orders:-")
-#         print("Order id/tCustomer id/tDate Of Order")
-#         for i in res:
-#             print(i[0]+"/t"+i[1]+"/t"+i[2])
-
-
-# Manufacturers Info i.e. orders for new stock.
-# The admin can easily organize from where the stock is coming and who is the manufacturer and the supplier.
-
 
 # Check medicines sold between a certain timeframe.
 # The admin can supervise the medicines sold within a certain timeframe.
