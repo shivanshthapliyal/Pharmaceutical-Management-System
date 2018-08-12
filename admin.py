@@ -4,12 +4,8 @@ Created on 08-Aug-2018
 @author: Shivansh Thapliyal
 '''
 import pymysql
-import user
-
 import datetime
 from user import *
-from order import *
-from customer import *
 from medicine import Medicine
 import random
 from prettytable import PrettyTable, MSWORD_FRIENDLY
@@ -19,12 +15,14 @@ con=database.connection()
 
 
 
-class admin():
-    admin_pass='root'
+class admin(user):
+    
 
 #     Check inventory for all medicines and their availability.
 #     A query will be generated for the admin to see all the medicines,
 #     their expiry date, the manufacturers info and all the other info.
+    def __init__(self):
+        pass
 
     def checkInventory(self):
         cur=con.cursor()
@@ -156,7 +154,6 @@ class admin():
         print("Here by manufacturer we mean to say distributor ! \n")
 
         k=PrettyTable(["Med_id","Med_name","exp_date","qty_avail"])
-        print(k)
         x = PrettyTable(["ManufacturerID","ManufacturerName"]) #just to test
         x.set_style(MSWORD_FRIENDLY)
         x.align["ManufacturerID"]="r"

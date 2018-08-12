@@ -136,7 +136,8 @@ while mainlogger ==True:
                 print("4.Check expiry dates of medicines.")
                 print("5.Check medicines sold between a certain timeframe.")
                 print("6.Order stock.")
-                print("7.Logout.")
+                print("7.Update Order Status")
+                print("8.Logout.")
                 choice2 = int(input("Enter choice:"))
                 obj = admin()
                 if choice2 == 1:
@@ -152,6 +153,8 @@ while mainlogger ==True:
                 elif choice2 == 6:
                     obj.stockOrder()
                 elif choice2 == 7:
+                    order().setStatus()
+                elif choice2 == 8:
                     tg=True
                 else:
                     print("Wrong Input Choice. Try entering from the given choices.")

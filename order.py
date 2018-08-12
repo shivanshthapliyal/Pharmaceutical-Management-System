@@ -50,3 +50,22 @@ class order:
 
     def setOrderDate(self):
         self.curdate=datetime.datetime.now()
+
+    def setStatus(self):
+        stmt="""SELECT oid,cid,dateoforder FROM orders where status='pending'"""
+        curs.execute(stmt)
+        res=curs.fetchall()
+        if(curs.rowcount == 0 ):
+            print("\nNO PENDING ORDERS \n")
+        else:
+            print("PENDING ORDERS")
+            print("--------------")
+            k=PrettyTable(["order_id","Customer_id","Order_date"])
+            for i in res:
+                k.add_row(i)
+            print(k)
+            inp=int(input("Enter the order id whose status is to be updated"))
+            stmt="""UPDATE orders SET status='completed' WHERE oid=%s"""
+            curs.execute(stmt, (inp))
+            conn.commit()
+            print("Successfully updated the status of order id:",inp,"to completed")

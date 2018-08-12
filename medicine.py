@@ -16,18 +16,16 @@ class Medicine:
         curs.execute(stmt,(self.med_id))
         result=curs.fetchall()
         self.med_expdate=datetime.datetime.strftime(result[0][0],"%Y-%M-%D")
-        stmt="""Select price from medicine where mid=%s"""
-        curs.execute(stmt,(self.med_id))
-        result=curs.fetchall()
-        self.price=result[0][0]
+
 
 
     def checkExpiry(self):
 
         if(self.med_expdate>now.strftime("%Y-%M-%D")):
-            return True
-        else:
             return False
+        else:
+            self.qty_avail=0
+            return True
 
     def checkAvail(self):
         if(self.qty_avail>0):
@@ -36,6 +34,9 @@ class Medicine:
             False
 
     def updateQty(self,qty):
+        bool=self.checkExpiry()
+        if(bool==True):
+            print("Old medicines of this id have got expired.Therefore discarding the old medicines from the stock  and updating it with new one")
         stmt="""Update medicine set qty=%s where mid=%s"""
         curs.execute(stmt,(self.qty_avail+qty,self.med_id))
         con.commit()
