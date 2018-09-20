@@ -1,8 +1,4 @@
-'''
-Created on 07-Aug-2018
 
-@author: Shivansh Thapliyal
-'''
 
 import pymysql
 
