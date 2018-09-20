@@ -48,7 +48,7 @@ class customer(user): #completed
         address = input("Enter address:")
         curs.execute(""" UPDATE pharmacy.customer set cname=%s, password=%s, phone=%s, address=%s WHERE cid=%s""",
         (name, password, phone, address, cid))
-        print(curs.rowcount,"record updated successfully!")
+        print("Profile Updated Successfully!!")
         conn.commit()
 
     def getDiscount(self,cid):
