@@ -64,7 +64,7 @@ class order:
             for i in res:
                 k.add_row(i)
             print(k)
-            inp=int(input("Enter the order id whose status is to be updated"))
+            inp=int(input("Enter the order id whose status is to be updated:"))
             stmt="""UPDATE orders SET status='completed' WHERE oid=%s"""
             curs.execute(stmt, (inp))
             conn.commit()
