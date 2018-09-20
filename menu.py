@@ -89,7 +89,7 @@ while mainlogger ==True:
                         print("6.Log Out.")
                         while(r5==False):
                             c3 = input("Enter choice:")
-                            if not re.match(r"[0-6]",c3):
+                            if not re.match(r"[1-6]",c3):
                                 print("Enter proper Choice!!!")
                             else:
                                 r5=True
